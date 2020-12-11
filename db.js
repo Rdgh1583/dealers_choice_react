@@ -47,4 +47,5 @@ const init = async () => {
 };
 
 init();
+
 module.exports = { syncAndSeed, models: { Suitcase, Content }, db };

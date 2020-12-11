@@ -11,6 +11,14 @@ router.get("/contents", async (req, res, next) => {
   }
 });
 
+router.get("/suitcases", async (req, res, next) => {
+  try {
+    res.send(await Suitcase.findAll());
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 router.get("/contents/:id", async (req, res, next) => {
   try {
     res.send(
@@ -22,5 +30,34 @@ router.get("/contents/:id", async (req, res, next) => {
     next(ex);
   }
 });
+
+router.post("/", async (req, res, next) => {
+  try {
+    const newItem = await Content.create(req.body);
+    res.send(newItem);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+// router.get("/suitcases", async (req, res, next) => {
+//   try {
+//     res.send(await Suitcase.findAll());
+//   } catch (ex) {
+//     next(ex);
+//   }
+// });
+
+// router.get("/suitcases/:id", async (req, res, next) => {
+//   try {
+//     res.send(
+//       await Suitcase.findByPk(req.params.id, {
+//         include: [Content],
+//       })
+//     );
+//   } catch (ex) {
+//     next(ex);
+//   }
+// });
 
 module.exports = router;

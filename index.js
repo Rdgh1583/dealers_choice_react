@@ -9,6 +9,9 @@ const {
 } = require("./db");
 
 //middleware (always use app.use when requiring middleware...)
+app.use(express.static(path.join(__dirname, "./public")));
+app.use(express.static(path.join(__dirname, "./dist")));
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 app.use("/api", require("./api"));
@@ -16,6 +19,14 @@ app.use("/api", require("./api"));
 app.get("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, ".", "client", "index.html"));
 });
+
+// app.post("/", async (req, res, next) => {
+//   try {
+//     await createUser(req.body);
+//   } catch (ex) {
+//     next(ex);
+//   }
+// });
 
 // app.get("/", async (req, res, next) => {
 //   try {
@@ -38,5 +49,16 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server running. Listening on Port ${port}...`);
 });
+
+// const init = async () => {
+//   try {
+//     await db.authenticate();
+//     await syncAndSeed();
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+// init();
 
 module.exports = { app };
