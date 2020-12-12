@@ -106,7 +106,9 @@ const Contents = ({ contents, name, handleName, update, deleteContent }) => {
             onChange={handleName}
           ></input>
 
-          <button type="submit">Pack it</button>
+          <button id="pack" type="submit">
+            Pack it
+          </button>
         </form>
       </div>
 
@@ -114,18 +116,21 @@ const Contents = ({ contents, name, handleName, update, deleteContent }) => {
         <h1>In Your Bag</h1>
         {contents.map((content) => {
           return (
-            <p key={content.id}>
+            <ul key={content.id}>
               <a href={`#${content.id}`}>
                 {content.name}
-                <button
-                  onClick={() => {
-                    deleteContent(content.id);
-                  }}
-                >
-                  x
-                </button>
+                <div>
+                  <button
+                    className="remove"
+                    onClick={() => {
+                      deleteContent(content.id);
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
               </a>
-            </p>
+            </ul>
           );
         })}
       </div>
@@ -167,6 +172,7 @@ export default class Main extends React.Component {
     this.handleName = this.handleName.bind(this);
     this.update = this.update.bind(this);
     this.deleteContent = this.deleteContent.bind(this);
+    this.darkModeHandler = this.darkModeHandler.bind(this);
   }
 
   async componentDidMount() {
@@ -203,6 +209,12 @@ export default class Main extends React.Component {
     console.log(contents);
   }
 
+  darkModeHandler() {
+    this.setState({
+      darkMode: !this.state.darkMode,
+    });
+  }
+
   render() {
     const { contents, contentId, name } = this.state;
     // console.log(suitcases);
@@ -222,6 +234,30 @@ export default class Main extends React.Component {
       height: "100vh",
     };
 
+    if (this.state.darkMode) {
+      // console.log("dark");
+
+      bColor = {
+        backgroundColor: "#2d3436",
+        color: "#ffffff",
+        height: "100vh",
+      };
+    }
+
+    let buttonClasses = [];
+    // Pushing bold class into the array
+
+    buttonClasses.push("bold");
+    // Checking the Mode and dynamically pushing a CSS class
+
+    if (this.state.darkMode) {
+      buttonClasses.push("green-bg", "black-font");
+      //console.log(buttonClasses);
+    } else {
+      buttonClasses.push("orange-bg", "black-font");
+      //console.log(buttonClasses);
+    }
+
     return (
       <div id="main" className={bColor}>
         <Contents
@@ -232,7 +268,14 @@ export default class Main extends React.Component {
           deleteContent={this.deleteContent}
         />
         {/* <Suitcases suitcases={suitcases} /> */}
-        {/* <button style={buttonStyle}>Mode</button> */}
+        <button
+          style={buttonStyle}
+          onClick={this.darkModeHandler}
+          className={buttonClasses.join(" ")}
+        >
+          {this.state.darkMode ? "Light" : "Dark"}
+          Mode
+        </button>
       </div>
     );
   }

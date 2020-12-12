@@ -13,6 +13,7 @@ header {
   color: #ffffff;
   padding: 10px;
   /*box-shadow: 5px 7px 5px 7px #888888;*/
+  margin-bottom: 20px;
 }
 
 div#contents {
@@ -37,17 +38,78 @@ div#bag {
   /* border: 2px solid gray; */
 }
 
+/* #add {
+  padding: 14px;
+  width: 40%;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #74b9ff;
+  display: inline-block;
+  border: 2px solid gray
+  border-radius: 5px;
+  font-size: 120%;
+} */
+
+#pack {
+  padding: 14px;
+  width: 40%;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #74b9ff;
+  display: inline-block;
+  border: transparent;
+  border-radius: 2px;
+  font-size: 50%;
+}
+
+.remove {
+  padding: 14px;
+  width: 60%;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #00b894;
+  display: inline-block;
+  border: transparent;
+  border-radius: 2px;
+  font-size: 30%;
+}
+
+@import url("https://fonts.googleapis.com/cssfamily=Shadows+Into+Light&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Shadows Into Light", cursive;
+  word-spacing: 2px;
+  letter-spacing: 1px;
+}
+.bold {
+  font-weight: bold;
+}
+.white-font {
+  color: #ffffff;
+}
+.black-font {
+  color: #000000;
+}
+.orange-bg {
+  background-color: #ff7f50;
+}
+.green-bg {
+  background-color: #b8e994;
+}
+
 /* div#bag {
   float: left;
   margin: 0 auto;
   padding: 70px 80px 80px 130px;
 } */
 
-/* div > p {
-  float: right;
-  margin: 0 auto;
-  padding: 20px 50px 30px 30px;
-} */
+div > p {
+  font-size: 160%;
+}
 
 /* header {
   background-color: #38ada9;
